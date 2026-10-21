@@ -87,29 +87,7 @@ function formatarMeta(valor) {
     });
 }
 
-function inicializarEdicaoMeta() {
-    try {
-        const metaSalva = localStorage.getItem(chaveMetaSaresp);
-        if (metaSalva !== null) {
-            const valorSalvo = Number(metaSalva);
-            if (!Number.isFinite(valorSalvo) || valorSalvo < 0 || valorSalvo > 10) {
-                throw new Error("O valor salvo deve estar entre 0 e 10.");
-            }
-            valorMeta.textContent = formatarMeta(valorSalvo);
-            campoMeta.value = String(valorSalvo);
-        }
-    } catch (erro) {
-        statusMeta.textContent = `Não foi possível carregar a meta salva. ${erro.message}`;
-        console.error("Falha ao carregar a meta SARESP.", erro);
-    }
 
-    botaoEditarMeta.addEventListener("click", () => {
-        formularioMeta.hidden = !formularioMeta.hidden;
-        botaoEditarMeta.setAttribute("aria-expanded", String(!formularioMeta.hidden));
-        if (!formularioMeta.hidden) {
-            campoMeta.focus();
-        }
-    });
 
     document.getElementById("cancelarEdicaoMeta").addEventListener("click", () => {
         formularioMeta.hidden = true;
