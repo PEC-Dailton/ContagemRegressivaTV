@@ -96,31 +96,8 @@ function formatarMeta(valor) {
         botaoEditarMeta.focus();
     });
 
-    formularioMeta.addEventListener("submit", (evento) => {
-        evento.preventDefault();
-        if (!campoMeta.reportValidity()) {
-            return;
-        }
+ 
 
-        const novoValor = Number(campoMeta.value);
-        if (!Number.isFinite(novoValor) || novoValor < 0 || novoValor > 10) {
-            statusMeta.textContent = "Informe uma meta entre 0 e 10.";
-            return;
-        }
-
-        try {
-            localStorage.setItem(chaveMetaSaresp, String(novoValor));
-            valorMeta.textContent = formatarMeta(novoValor);
-            statusMeta.textContent = "Meta SARESP atualizada e salva neste navegador.";
-            formularioMeta.hidden = true;
-            botaoEditarMeta.setAttribute("aria-expanded", "false");
-            botaoEditarMeta.focus();
-        } catch (erro) {
-            statusMeta.textContent = `Não foi possível salvar a meta. ${erro.message}`;
-            console.error("Falha ao salvar a meta SARESP.", erro);
-        }
-    });
-}
 
 function atualizarDataHora() {
     const agora = new Date();
